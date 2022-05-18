@@ -82,7 +82,7 @@ body.addEventListener('mouseup', mouseUp);
 clearGridButton.addEventListener('click', clearGrid);
 
 //Initializes all the colors
-let selectedColor = 'white';
+let selectedColor = 'black';
 createColors();
 
 //Sets up slider input and output display
