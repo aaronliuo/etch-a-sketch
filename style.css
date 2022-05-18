@@ -1,0 +1,24 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-color: aliceblue;
+    height: 100%;
+}
+
+.grid-container {
+    height: 60%;
+}
+
+.grid-row {
+    border: 1px solid blue;
+    display: flex;
+    height: 5%;
+}
+
+.grid-box {
+    border: 1px solid red;
+    width: 5%;
+    height: auto;
+}
