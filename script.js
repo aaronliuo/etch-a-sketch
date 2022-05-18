@@ -31,7 +31,16 @@ function createGrid(size) {
     
 }
 
+function clearGrid() {
+    const boxes = document.querySelectorAll('.grid-box');
+    boxes.forEach((box) =>  {
+        box.style.backgroundColor = 'white';
+    });
+}
+
 const grid = document.querySelector('.grid-container');
+const clearGridButton = document.querySelector('.clear-grid');
 let isMouseDown = 0;
 createGrid(16);
 grid.addEventListener('mouseup', mouseUp);
+clearGridButton.addEventListener('click', clearGrid);
