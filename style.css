@@ -8,17 +8,17 @@ body {
 }
 
 .grid-container {
-    height: 60%;
+    height: 500px;
+    width: 500px;
+    border: 1px solid blue;
 }
 
 .grid-row {
-    border: 1px solid blue;
     display: flex;
-    height: 5%;
 }
 
 .grid-box {
-    border: 1px solid red;
+    background-color: white;
     width: 5%;
     height: auto;
 }
