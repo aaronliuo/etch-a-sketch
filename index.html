@@ -7,8 +7,23 @@
     </head>
 
     <body>
-        <div class="grid-container"></div>
-        <button class="clear-grid">Clear Grid</button>
+        <div class="header-section">
+            <h1>Etch-a-sketch</h1>
+        </div>
+        <div class="grid-section">
+            <div class="color-pallete">
+                <h3>Colors</h3>
+            </div>
+            <div class="grid-container"></div>
+        </div>
+        <div class="slide-container">
+            <div class="slide-output">16 x 16</div>
+            <input type="range", min="1", max="100", value="16", class="slider">
+        </div>
+        <div class="button-container">
+            <button class="clear-grid">Clear Grid</button>
+            <button class="reset-grid">Reset Grid & Apply Dimensions</button>
+        </div>
         <script src="./script.js"></script>
     </body>
 </html>
