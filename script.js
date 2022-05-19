@@ -1,6 +1,5 @@
 function mouseDown(currentBox) {
-    if(!isMouseDown) return;
-    currentBox.target.style.backgroundColor = selectedColor;
+    currentBox.style.backgroundColor = selectedColor;
 }
 
 function createGrid(size) {
@@ -12,8 +11,14 @@ function createGrid(size) {
             const box = document.createElement('div');
             box.classList.add('grid-box');
             box.style.cssText = 'width: ' + 100/size + '%;';
-            box.addEventListener('mouseover', mouseDown);
-            box.addEventListener('mousedown', mouseDown);
+            box.addEventListener('mouseover', function() {
+                if(isMouseDown) {
+                    mouseDown(box);
+                }
+            });
+            box.addEventListener('mousedown', function() {
+                mouseDown(box);
+            });
             row.appendChild(box);
         }
         grid.appendChild(row);
