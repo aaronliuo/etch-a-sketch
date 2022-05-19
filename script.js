@@ -1,10 +1,6 @@
 function mouseDown(currentBox) {
-    currentBox.style.backgroundColor = selectedColor;
-    isMouseDown = 1;
-}
-
-function mouseUp() {
-    isMouseDown = 0;
+    if(!isMouseDown) return;
+    currentBox.target.style.backgroundColor = selectedColor;
 }
 
 function createGrid(size) {
@@ -16,14 +12,8 @@ function createGrid(size) {
             const box = document.createElement('div');
             box.classList.add('grid-box');
             box.style.cssText = 'width: ' + 100/size + '%;';
-            box.addEventListener('mousedown', function() {
-                mouseDown(box);
-            });
-            box.addEventListener('mouseover', function() {
-                if(isMouseDown) {
-                    mouseDown(box);
-                }
-            });
+            box.addEventListener('mouseover', mouseDown);
+            box.addEventListener('mousedown', mouseDown);
             row.appendChild(box);
         }
         grid.appendChild(row);
@@ -72,13 +62,19 @@ function createColors() {
     }
 }
 
-//Initializes 16x16 grid and adds necessary event listeners
+
 const grid = document.querySelector('.grid-container');
 const body = document.querySelector('body');
 const clearGridButton = document.querySelector('.clear-grid');
-let isMouseDown = 0;
+
+let isMouseDown = false;
+body.onmousedown = () => (isMouseDown = true);
+body.onmouseup = () => (isMouseDown = false);
+
+//Initializes 16x16 grid and adds necessary event listeners
 createGrid(16);
-body.addEventListener('mouseup', mouseUp);
+
+//Clear Grid button
 clearGridButton.addEventListener('click', clearGrid);
 
 //Initializes all the colors

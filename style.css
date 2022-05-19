@@ -63,12 +63,14 @@ body {
 
 .grid-row {
     display: flex;
+    user-select: none;
 }
 
 .grid-box {
     background-color: white;
     width: 5%;
     height: auto;
+    user-select: none;
 }
 
 .slide-container {
