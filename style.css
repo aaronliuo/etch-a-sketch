@@ -6,6 +6,7 @@ body {
     background-color: aliceblue;
     height: 100%;
     font-family: sans-serif;
+    user-select: none;
 }
 
 .header-section {
@@ -63,14 +64,14 @@ body {
 
 .grid-row {
     display: flex;
-    user-select: none;
+    /* user-select: none; */
 }
 
 .grid-box {
     background-color: white;
     width: 5%;
     height: auto;
-    user-select: none;
+    /* user-select: none; */
 }
 
 .slide-container {
