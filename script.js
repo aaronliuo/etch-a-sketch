@@ -40,20 +40,22 @@ function fillGrid(currentBox) {
 }
 
 function createGrid() {
+    grid.setAttribute("style", "height: " + currentPixelSize * currentGridHeight + "px; width: " + currentPixelSize * currentGridWidth + "px");
+    grid.style.width = currentPixelSize*currentGridWidth;
     for(let i=0; i<currentGridHeight; i++) {
         const row = document.createElement('div');
         const colorRow = new Array(currentGridWidth);
 
         row.classList.add('grid-row');
-        row.style.cssText = 'height: ' + 100/currentGridHeight + '%;';
+        row.setAttribute("style", "height: " + currentPixelSize + "px");
 
         for(let j=0; j<currentGridWidth; j++) {
             const box = document.createElement('div');
             box.classList.add('grid-box');
-            box.style.cssText = 'width: ' + 100/currentGridWidth + '%;';
+            box.setAttribute("style", "width: " + currentPixelSize + "px");
 
             box.id = "" + (i*currentGridHeight+j);
-            console.log(box.id);
+            console.log(box.style.width);
 
             box.addEventListener('mouseover', function() {
                 if(isMouseDown && !isFillClicked) {
@@ -137,14 +139,43 @@ function createColors() {
     colorPallete.appendChild(fillButton)
 }
 
+function setSliders() {
+
+    const heightSlider = document.getElementById('height-slider');
+    const widthSlider = document.getElementById('width-slider');
+    const pixelSizeSlider = document.getElementById('pixel-size-slider');
+
+    heightSlider.querySelector('.slider').oninput = function() {
+        heightSlider.querySelector('.slide-output').innerHTML = "Height: " + this.value;
+        currentGridHeight = this.value;
+    }
+
+    widthSlider.querySelector('.slider').oninput = function() {
+        widthSlider.querySelector('.slide-output').innerHTML = "Width: " + this.value;
+        currentGridWidth = this.value;
+    }
+
+    pixelSizeSlider.querySelector('.slider').oninput = function() {
+        pixelSizeSlider.querySelector('.slide-output').innerHTML = "Pixel Size: " + this.value;
+        currentPixelSize = this.value;
+    }
+
+    // const slideContainers = document.querySelectorAll('.slide-container');
+    // slideContainers.forEach((slider) => {
+    //     slider.lastChild().oninput = function() {
+    //         slider.querySelector('.slide-output').innerHTML = this.value;
+    //     }
+    // })
+}
 
 const grid = document.querySelector('.grid-container');
 const body = document.querySelector('body');
-const currentGridWidth = 16;
-const currentGridHeight = 16;
 const clearGridButton = document.querySelector('.clear-grid');
 const colorGrid = [];
 
+let currentGridWidth = 16;
+let currentGridHeight = 16;
+let currentPixelSize = 35;
 let isMouseDown = false;
 let isFillClicked = false;
 let selectedColor = "black";
@@ -152,23 +183,16 @@ body.onmousedown = () => (isMouseDown = true);
 body.onmouseup = () => (isMouseDown = false);
 
 //Initializes 16x16 grid and adds necessary event listeners
-createGrid(16);
-
-//Clear Grid button
-clearGridButton.addEventListener('click', clearGrid);
+createGrid();
 
 //Initializes all the colors
 createColors();
 
 //Sets up slider input and output display
-const slider = document.querySelector('.slider');
-const sliderOutput = document.querySelector('.slide-output');
-slider.oninput = function() {
-    sliderOutput.innerHTML = (this.value + ' x ' + this.value);
-}
+setSliders();
 
 //Applies new grid dimensions and clears all solors
 const resetGridButton = document.querySelector('.reset-grid');
 resetGridButton.addEventListener('click', function() {
-    resetGrid(slider.value);
+    resetGrid();
 })

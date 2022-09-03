@@ -20,12 +20,21 @@
                 <button>Fill</button>
             </div> -->
         </div>
-        <div class="slide-container">
-            <div class="slide-output">16 x 16</div>
-            <input type="range", min="1", max="100", value="16", class="slider">
+        <div>
+            <div class="slide-container" id="height-slider">
+                <div class="slide-output">Height: 16</div>
+                <input type="range", min="1", max="100", value="16", class="slider">
+            </div>
+            <div class="slide-container" id="width-slider">
+                <div class="slide-output">Width: 16</div>
+                <input type="range", min="1", max="100", value="16", class="slider">
+            </div>
+            <div class="slide-container" id="pixel-size-slider">
+                <div class="slide-output">Pixel Size: 35</div>
+                <input type="range", min="1", max="100", value="35", class="slider">
+            </div>
         </div>
         <div class="button-container">
-            <button class="clear-grid">Clear Grid</button>
             <button class="reset-grid">Reset Grid & Apply Dimensions</button>
         </div>
         <script src="./script.js"></script>

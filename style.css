@@ -20,6 +20,7 @@ body {
     /* border: 2px solid red; */
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 4%;
 }
 
@@ -28,8 +29,8 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 5%;
-    width: 10%;
-    height: auto;
+    width: 250px;
+    height: 600px;
     border: 2px solid black;
     background-color: lightblue;
     font-size: 25px;
@@ -58,8 +59,6 @@ body {
 }
 
 .grid-container {
-    height: 500px;
-    width: 500px;
     border: 2px solid rgb(39, 85, 153);
 }
 
@@ -70,17 +69,17 @@ body {
 
 .grid-box {
     background-color: white;
-    width: 5%;
-    height: auto;
     /* user-select: none; */
 }
 
 .slide-container {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    justify-content: center;
     align-items: center;
-    font-size: 40px;
+    font-size: 30px;
     padding: 1%;
+    gap: 15px;
 }
 
 .slider {
