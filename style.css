@@ -28,9 +28,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5%;
+    gap: 20px;
     width: 250px;
-    height: 600px;
+    height: 560px;
     border: 2px solid black;
     background-color: lightblue;
     font-size: 25px;
@@ -109,9 +109,19 @@ body {
     gap: 2%;
 }
 
+.tool-button {
+    cursor: pointer;
+    height: 40px;
+    width: 125px;
+    background-color: rgb(50, 61, 88);
+    font-size: 20px;
+    color: white;
+    border: 2px solid grey;
+}
+
 .button-container button {
     cursor: pointer;
-    height: 60%;
+    height: 50px;
     background-color: rgb(50, 61, 88);
     font-size: 20px;
     color: white;

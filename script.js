@@ -124,6 +124,7 @@ function createColors() {
 
     // Adds drawButton. If pressed enables, disables fill feature.
     let drawButton = document.createElement('button');
+    drawButton.classList.add('tool-button');
     drawButton.textContent = "Draw";
     drawButton.addEventListener('click', function() {
         isFillClicked = false;
@@ -133,6 +134,7 @@ function createColors() {
     // Adds fillButton. If pressed enables fill feature on click.
     let fillButton = document.createElement('button');
     fillButton.textContent = "Fill";
+    fillButton.classList.add('tool-button');
     fillButton.addEventListener('click', function() {
         isFillClicked = true;
     });
