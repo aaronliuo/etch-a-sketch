@@ -17,7 +17,7 @@ body {
 }
 
 .grid-section {
-    /* border: 2px solid red; */
+    border: 2px solid red;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +30,7 @@ body {
     align-items: center;
     gap: 20px;
     width: 225px;
-    height: 560px;
+    height: 600px;
     border: 2px solid black;
     background-color: lightblue;
     font-size: 25px;
@@ -51,12 +51,40 @@ body {
 
 .color-box {
     width: 20%;
-    border: 4px solid black;
+    border: 2px solid rgb(41, 41, 41);
     cursor: pointer;
 }
 .color-box:hover {
     opacity: 0.6;
 }
+
+.colorpicker-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.2rem;
+}
+
+.input-color-container {
+    position: relative;
+    overflow: hidden;
+    width: 45px;
+    height: 45px;
+    /* border: 2px solid black; */
+    border-radius: 40px;
+}
+
+#colorpicker {
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    width: 60px;
+    height: 60px;
+    border: none;
+    cursor: pointer;
+}
+
 
 .grid-container {
     border: 2px solid rgb(39, 85, 153);

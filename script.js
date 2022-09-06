@@ -1,4 +1,11 @@
 function mouseDown(currentBox) {
+
+    //Changes selcted selectedColor to current value of the color wheel.
+    if(customColorSelected) {
+        const colorPicker = document.getElementById('colorpicker');
+        selectedColor = colorPicker.value;
+    }
+
     currentBox.style.backgroundColor = selectedColor;
     colorGrid[parseInt(currentBox.id/currentGridHeight)][currentBox.id%currentGridHeight] = selectedColor;
     console.log(currentBox.id);
@@ -101,9 +108,19 @@ function resetGrid() {
     createGrid();
 }
 
+function resetColorBoxBorders() {
+    const container = document.querySelector('.input-color-container');
+    const colorBoxes = document.querySelectorAll('.color-box');
+
+    container.style.border = "none";
+    colorBoxes.forEach((box) => {
+        box.style.borderColor = "rgb(41, 41, 41)";
+    })
+}
+
 function createColors() {
     const colorPallete = document.querySelector('.color-pallete');
-    const colors = ['white', 'black', 'red', 'orange', 'yellow', 
+    const colors = ['black', 'brown', 'red', 'orange', 'yellow', 
         'green', 'blue', 'purple', 'pink', 'grey'];
 
 
@@ -114,31 +131,55 @@ function createColors() {
             const box = document.createElement('div');
             box.classList.add('color-box');
             box.style.backgroundColor = colors[(i*2)+j];
+
+            //resets other colors and sets this color as selected
             box.addEventListener('click', function() {
                 selectedColor = colors[(i*2)+j];
+                resetColorBoxBorders();
+                customColorSelected = false;
+                box.style.borderColor = "white";
             });
+
             row.appendChild(box);
         }
         colorPallete.appendChild(row);
     }
 
-    // Adds drawButton. If pressed enables, disables fill feature.
-    let drawButton = document.createElement('button');
-    drawButton.classList.add('tool-button');
-    drawButton.textContent = "Draw";
-    drawButton.addEventListener('click', function() {
-        isFillClicked = false;
-    });
-    colorPallete.appendChild(drawButton);
+    //Resets other colors, customColor is selected but selectedColor isn't changed yet.
+    const colorPicker = document.getElementById('colorpicker');
+    colorPicker.addEventListener('click', function() {
+        customColorSelected = true;
+        resetColorBoxBorders();
+        const container = document.querySelector('.input-color-container');
+        container.style.border = "2px solid white";
+    })
+}
 
+function createModes() {
+    const colorPallete = document.querySelector('.color-pallete');
+    // Adds drawButton. If pressed enables, disables fill feature.
     // Adds fillButton. If pressed enables fill feature on click.
+    let drawButton = document.createElement('button');
     let fillButton = document.createElement('button');
+    drawButton.textContent = "Draw";
+    drawButton.classList.add('tool-button');
     fillButton.textContent = "Fill";
     fillButton.classList.add('tool-button');
+
+    drawButton.addEventListener('click', function() {
+        isFillClicked = false;
+        fillButton.style.borderColor = "grey";
+        drawButton.style.borderColor = "white";
+    });
+    drawButton.style.borderColor = "white";
+    colorPallete.appendChild(drawButton);
+
     fillButton.addEventListener('click', function() {
         isFillClicked = true;
+        drawButton.style.borderColor = "grey";
+        fillButton.style.borderColor = "white";
     });
-    colorPallete.appendChild(fillButton)
+    colorPallete.appendChild(fillButton);
 }
 
 function setSliders() {
@@ -178,9 +219,10 @@ const colorGrid = [];
 let currentGridWidth = 16;
 let currentGridHeight = 16;
 let currentPixelSize = 35;
+let customColorSelected = false;
 let isMouseDown = false;
 let isFillClicked = false;
-let selectedColor = "black";
+let selectedColor = "white";
 body.onmousedown = () => (isMouseDown = true);
 body.onmouseup = () => (isMouseDown = false);
 
@@ -189,6 +231,8 @@ createGrid();
 
 //Initializes all the colors
 createColors();
+
+createModes();
 
 //Sets up slider input and output display
 setSliders();
