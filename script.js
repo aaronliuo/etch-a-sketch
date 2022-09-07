@@ -13,6 +13,11 @@ function mouseDown(currentBox) {
 
 function fillGrid(currentBox) {
 
+    if(customColorSelected) {
+        const colorPicker = document.getElementById('colorpicker');
+        selectedColor = colorPicker.value;
+    }
+
     if(currentBox.style.backgroundColor == selectedColor) return;
 
     const directionsY = [-1, 1, 0, 0];
